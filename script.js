@@ -519,3 +519,33 @@ function renderFormations(formationsToRender) {
 
     });
 }
+
+function showFormation(formationId) {
+    const formation = formations.find(
+        (item) => item.id === formationId
+    );
+
+    if (!formation) {
+        return;
+    }
+
+    detailTitle.textContent = formation.name;
+    detailDescription.textContent = formation.description;
+
+    renderRatings(formation);
+    renderList(
+        strengthsList,
+        formation.strengths
+    );
+
+    renderList(
+        weaknessesList,
+        formation.weaknesses
+    );
+
+    renderPitch(formation);
+    highlightSelectedCard(formation.id);
+    formationDetail.scrollIntoView({
+        behavior: "smooth"
+    });
+}
