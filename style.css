@@ -4,3 +4,29 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+:root {
+    --color-background: #0b1110;
+    --color-background-light: #111a17;
+    --color-card: #16211d;
+    --color-card-hover: #1c2b25;
+    --color-pitch: #17633c;
+    --color-pitch-dark: #125331;
+    --color-pitch-line: rgba(255, 255, 255, 0.7);
+    --color-primary: #48d597;
+    --color-primary-dark: #2fb77b;
+    --color-text: #f3f7f5;
+    --color-text-muted: #9baaa3;
+    --color-border: rgba(255, 255, 255, 0.1);
+    --color-danger: #e87575;
+    --color-warning: #e5c56a;
+
+    --max-width: 1200px;
+    --radius-small: 8px;
+    --radius-medium: 14px;
+    --radius-large: 20px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
