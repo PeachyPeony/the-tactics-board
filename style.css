@@ -519,3 +519,60 @@ img {
     color: var(--color-text-muted);
     font-size: 0.85rem;
 }
+
+/* Responsive design */
+@media (max-width: 900px) {
+
+    .formation-grid,
+    .concept-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .formation-detail {
+        grid-template-columns: 1fr;
+    }
+
+    .pitch-container {
+        max-width: 550px;
+    }
+}
+
+@media (max-width: 650px) {
+    .header-content {
+        flex-direction: column;
+        justify-content: center;
+        padding: 1rem 0;
+    }
+
+    .main-nav {
+        gap: 1rem;
+    }
+
+    .hero {
+        padding: 5rem 0 4rem;
+    }
+
+    .controls {
+        grid-template-columns: 1fr;
+    }
+
+    .formation-grid,
+    .concept-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .strengths-weaknesses {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .formation-information {
+        padding: 1.25rem
+    }
+
+    .player-marker {
+        width: 34px;
+        height: 34px;
+        font-size: 0.55rem;
+    }
+}
