@@ -479,3 +479,17 @@ const formations = [
         ]
     }
 ];
+
+const formationGrid = document.querySelector("#formation-grid");
+const formationDetail = document.querySelector("#formation-detail");
+const randomButton = document.querySelector("#random-buttom");
+const typeFilter = document.querySelector("#type-filter");
+const styleFilter = document.querySelector("#style-filter");
+const sortSelect = document.querySelector("#sort-select");
+const detailTitle = document.querySelector("#detail-description");
+const attackingRating = document.querySelector("#attacking-rating");
+const defendingRating = document.querySelector("#defending-rating");
+const difficultyRating = document.querySelector("#difficulty-rating");
+const strengthsList = document.querySelector("#strengths-list");
+const weaknessesList = document.querySelector("#weaknesses-list");
+const footballPitch = document.querySelector("#football-pitch");
