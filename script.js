@@ -493,3 +493,29 @@ const difficultyRating = document.querySelector("#difficulty-rating");
 const strengthsList = document.querySelector("#strengths-list");
 const weaknessesList = document.querySelector("#weaknesses-list");
 const footballPitch = document.querySelector("#football-pitch");
+
+function renderFormations(formationsToRender) {
+    formationGrid.innerHTML = "";
+
+    formationsToRender.forEach((formation) => {
+        const card = document.createElement("article");
+        card.classList.add("formation-card");
+        card.dataset.id = formation.id;
+        card.innerHTML = `
+        <h3>${formation.name}</h3>
+        
+        <p class="formation-style">
+            ${formation.style}
+            </p>
+            <p>
+                ${formation.description}
+            </p> 
+            `;
+
+        card.addEventListener("click", () => {
+            showFormation(formation.id);
+        });
+        formationGrid.appendChild(card);
+
+    });
+}
