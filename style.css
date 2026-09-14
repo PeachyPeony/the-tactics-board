@@ -103,3 +103,64 @@ img {
 .main-nav a:focus {
     color: var(--color-text);
 }
+
+/* Hero */
+.hero {
+    padding: 7rem 0 6rem;
+    background: radial-gradient(circle at 80% 30%,
+            rgba(72, 213, 151, 0.12),
+            transparent 35%),
+        linear-gradient(180deg,
+            #0b1110 0%,
+            #0e1714 100%);
+}
+
+.header-content {
+    max-width: 800px;
+}
+
+.eyebrow {
+    margin-bottom: 0.75rem;
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    max-width: 750px;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+}
+
+.hero-description {
+    max-width: 600px;
+    margin: 1.5rem 0 2rem;
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+}
+
+/* Buttons */
+.button {
+    border: none;
+    border-radius: 999px;
+    padding: 0.8rem 1.4rem;
+    font-weight: 700;
+    transition: background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+}
+
+.button-primary {
+    background-color: var(--color-primary);
+    color: #07120e;
+}
+
+.button-primary:hover {
+    background-color: var(--color-primary-dark);
+}
