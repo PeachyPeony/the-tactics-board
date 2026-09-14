@@ -164,3 +164,358 @@ img {
 .button-primary:hover {
     background-color: var(--color-primary-dark);
 }
+
+/* Sections */
+.formations-section,
+.formation-detail-section,
+.concepts-section {
+    padding: 5rem 0;
+}
+
+.formation-detail-section {
+    background-color: var(--color-background-light);
+}
+
+.section-heading {
+    max-width: 650px;
+    margin-bottom: 2.5rem;
+}
+
+.section-heading h2 {
+    margin-bottom: 0.75rem;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+}
+
+.section-heading p:last-child {
+    color: var(--color-text-muted);
+}
+
+/* Filter / sort controls */
+.controls {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    padding: 1.25rem;
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-medium);
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.filter-group label {
+    color: var(--color-text-muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.filter-group select {
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    background-color: var(--color-background-light);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-small);
+    cursor: pointer;
+}
+
+.filter-group select:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* Formation cards */
+.formation-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+
+.formation-card {
+    padding: 1.5rem;
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-medium);
+    transition: 0.2s ease,
+        border-color 0.2s ease,
+        background-color 0.2s ease;
+
+    cursor: pointer;
+}
+
+.formation-card:hover {
+    transform: translateY(-4px);
+    background-color: var(--color-card-hover);
+    border-color: rgba(72, 213, 151, 0.4);
+}
+
+.formation-card.selected {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 1px var(--color-primary);
+}
+
+.formation-card h3 {
+    margin-bottom: 0.25rem;
+    font-size: 1.6rem;
+}
+
+.formation-card .formation-style {
+    margin-bottom: 1.25rem;
+    color: var(--color-primary);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.formation-card p {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+.rating-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.rating {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    align-items: center;
+    gap: 1rem;
+}
+
+.rating>span {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+}
+
+.rating-value {
+    display: flex;
+    gap: 0.3rem;
+}
+
+.rating-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #34443d;
+}
+
+.rating-list.active {
+    background-color: var(--color-primary);
+}
+
+/* Formation detail */
+.formation-detail {
+    display: grid;
+    grid-template-columns: minmax(300px, 1fr) minmax(300px, 0.8fr);
+    gap: 3rem;
+    align-items: start;
+}
+
+/* Football pitch */
+.pitch-container {
+    width: 100%;
+    max-width: 650px;
+    margin-inline: auto;
+}
+
+.football-pitch {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 68 / 105;
+    overflow: hidden;
+    background-color: var(--color-pitch);
+    border: 4px solid rgba(255, 255, 255, 0.8);
+    border-radius: 4px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+/* Pitch stripes */
+.football-pitch::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(to right,
+            rgba(255, 255, 255, 0.025) 0,
+            rgba(255, 255, 0.025) 10%,
+            transparent 10%,
+            transparent 20%);
+}
+
+/* Halfway line */
+.football-pitch::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 2px;
+    background-color: var(--color-pitch-line);
+}
+
+/* Centre circle */
+.pitch-centre-circle {
+    position: absolute;
+    width: 22%;
+    aspect-ratio: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid var(--color-pitch-line);
+    border-radius: 50%;
+}
+
+.pitch-centre-circle::after {
+    content: "";
+    position: absolute;
+    width: 5%;
+    aspect-ratio: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--color-pitch-line);
+    border-radius: 50%;
+}
+
+/* Penalty areas */
+.penalty-area {
+    position: absolute;
+    left: 20%;
+    width: 60%;
+    height: 16%;
+    border: 2px solid var(--color-pitch-line);
+}
+
+.penalty-area.top {
+    top: 0;
+    border-top: none;
+}
+
+.penalty-area.bottom {
+    bottom: 0;
+    border-bottom: none;
+}
+
+/* Goal areas */
+.goal-area {
+    position: absolute;
+    left: 36%;
+    width: 28%;
+    height: 6%;
+    border: 2px solid var(--color-pitch-line);
+}
+
+.goal-area.top {
+    top: 0;
+    border-top: none;
+}
+
+.goal-area-bottom {
+    bottom: 0;
+    border-bottom: none;
+}
+
+/* Playes markers */
+.player-marker {
+    position: absolute;
+    z-index: 5;
+    width: 42px;
+    height: 42px;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-primary);
+    color: #07120e;
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+    font-size: 0.65rem;
+    font-weight: 800;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Formation information */
+.formation-information {
+    padding: 2rem;
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-medium);
+}
+
+.strengths-weaknesses {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem
+}
+
+.strengths-weaknesses h3 {
+    margin-bottom: 0.75rem;
+}
+
+.strengths-weaknesses ul {
+    padding-left: 1.2rem;
+}
+
+.strengths-weaknesses li {
+    margin-bottom: 0.5rem;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+.strengths-weaknesses li::marker {
+    color: var(--color-primary);
+}
+
+/* Tactical concepts */
+.concept-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+
+.concept-card {
+    padding: 1.5rem;
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-medium);
+}
+
+.concept-card h3 {
+    margin-bottom: 0.5rem;
+}
+
+.concept-card p {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+/* Footer */
+.site.footer {
+    padding: 3rem 0;
+    background-color: #070c0a;
+    border-top: 1px solid var(--color-border);
+}
+
+.site.footer p:first-child {
+    margin-bottom: 0.25rem;
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.site.footer p:last-child {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+}
