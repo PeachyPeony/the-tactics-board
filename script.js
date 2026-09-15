@@ -595,10 +595,48 @@ function getPlayerRole(position) {
         position === "LWB" ||
         position === "RWB"
     ) {
-        return "midfielders"
+        return "midfielder"
     }
 
     return "attacker"
+}
+
+function getPlayerRoleName(position) {
+    const roleNames = {
+        GK: "Goalkeeper",
+
+        LB: "Left Back",
+        RB: "Right Back",
+        LCB: "Left Centre-Back",
+        CB: "Centre-Back",
+        RCB: "Right Centre-Back",
+
+        LWB: "Left Wing-Back",
+        RWB: "Right Wing-Back",
+
+        DM: "Defensive Midfielder",
+        LDM: "Left Defensive Midfielder",
+        RDM: "Right Defensive Midfielder",
+
+        LM: "Left Midfielder",
+        RM: "Right Midfielder",
+        LCM: "Left Central Midfielder",
+        CM: "Central Midfielder",
+        RCM: "Right Central Midfielder",
+
+        CAM: "Attacking Midfielder",
+        LAM: "Left Attacking Midfielder",
+        RAM: "Right Attacking Midfieler",
+
+        LW: "Left Winger",
+        RW: "Right Winger",
+
+        ST: "Striker",
+        LST: "Left Striker",
+        RST: "Right Striker"
+    };
+
+    return roleNames[position] || position;
 }
 
 function renderFormations(formationsToRender) {
@@ -608,6 +646,15 @@ function renderFormations(formationsToRender) {
         const card = document.createElement("article");
         card.classList.add("formation-card");
         card.dataset.id = formation.id;
+        card.setAttribute("tabindex", "0");
+        card.setAttribute("aria-label",
+            `View ${formation.name} formation`);
+        card.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                showFormation(formation.id);
+            }
+        });
         card.innerHTML = `
         <h3>${formation.name}</h3>
         
@@ -741,14 +788,27 @@ function renderPitch(formation) {
 
     formation.positions.forEach((player) => {
         const marker = document.createElement("div");
-        marker.classList.add("player-marker");
+        const roleClass = getPlayerRole(player.position);
+        const roleName = getPlayerRoleName(player.position);
+        marker.classList.add(
+            "player-marker", roleClass
+        );
+        if (player.y < 30) {
+            marker.classList.add("tooltip-below");
+        }
         marker.textContent = player.position;
         marker.style.left = `${player.x}%`;
         marker.style.top = `${player.y}%`;
         marker.setAttribute(
             "aria-label",
-            player.position
+            `${player.position} - ${roleName}`
         );
+
+        marker.setAttribute("tabindex", "0");
+        marker.innerHTML = `<span class="player-label">${player.position}</span>
+        <span class="player-tooltip"> <strong>${player.position}</strong> 
+        <span>${roleName}</span>`;
+
         footballPitch.appendChild(marker);
     });
 }

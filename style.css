@@ -156,6 +156,11 @@ img {
     transform: translateY(-2px);
 }
 
+.button:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+}
+
 .button-primary {
     background-color: var(--color-primary);
     color: #07120e;
@@ -228,7 +233,7 @@ img {
     cursor: pointer;
 }
 
-.filter-group select:focus {
+.filter-group select:focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
 }
@@ -259,8 +264,14 @@ img {
     border-color: rgba(72, 213, 151, 0.4);
 }
 
+.formation-card:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+}
+
 .formation-card.selected {
     border-color: var(--color-primary);
+    background-color: #1a2b24;
     box-shadow: 0 0 0 1px var(--color-primary);
 }
 
@@ -333,12 +344,14 @@ img {
 .mini-pitch {
     position: relative;
     width: 100%;
+    max-width: 180px;
     aspect-ratio: 68 / 105;
-    margin: 1.5rem 0;
+    margin: 1.5rem auto;
     overflow: hidden;
-    background-color: var(--color-pitch);
-    border: 2px solid rgba(255, 255, 255, 0.65);
+    background-color: #145534;
+    border: 1px solid rgba(255, 255, 255, 0.35);
     border-radius: 4px;
+    opacity: 0.9;
 }
 
 /* Pitch stripes */
@@ -346,8 +359,8 @@ img {
     content: "";
     position: absolute;
     inset: 0;
-    background: repeating-linear-gradient(to right, rgba(255, 255, 0.025) 0,
-            rgba(255, 255, 0.025) 10%,
+    background: repeating-linear-gradient(to right, rgba(255, 255, 0.02) 0,
+            rgba(255, 255, 0.02) 10%,
             transparent 10%,
             transparent 20%);
 }
@@ -359,7 +372,7 @@ img {
     right: 0;
     top: 50%;
     height: 1px;
-    background-color: var(--color-pitch-line);
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 /* Centre circle */
@@ -370,7 +383,7 @@ img {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    border: 1px solid var(--color-pitch-line);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 50%;
 }
 
@@ -380,7 +393,7 @@ img {
     left: 20%;
     width: 60%;
     height: 16%;
-    border: 1px solid var(--color-pitch-line);
+    border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .mini-pitch-penalty.top {
@@ -397,14 +410,14 @@ img {
 .mini-player {
     position: absolute;
     z-index: 2;
-    width: 12px;
-    height: 12px;
+    width: 11px;
+    height: 11px;
     transform: translate(-50%, -50%);
-    background-color: var(--color-primary);
-    border: 1px solid rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.85);
     border-radius: 50%;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease,
+        background-color 0.2s ease;
 }
 
 .mini-player.goalkeeper {
@@ -425,7 +438,7 @@ img {
 
 /* Subtle interaction */
 .formation-card:hover .mini-player {
-    transform: translate(-50%, -50%) scale(1.15);
+    transform: translate(-50%, -50%) scale(1.12);
 }
 
 .rating-list {
@@ -481,12 +494,14 @@ img {
 .football-pitch {
     position: relative;
     width: 100%;
+    max-width: 650px;
     aspect-ratio: 68 / 105;
     overflow: hidden;
     background-color: var(--color-pitch);
-    border: 4px solid rgba(255, 255, 255, 0.8);
-    border-radius: 4px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    border: 4px solid rgba(255, 255, 255, 0.85);
+    border-radius: 6px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45),
+        0 0 0 1px rgba(72, 213, 151, 0.08);
 }
 
 /* Pitch stripes */
@@ -578,8 +593,8 @@ img {
 .player-marker {
     position: absolute;
     z-index: 5;
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
@@ -590,7 +605,89 @@ img {
     border-radius: 50%;
     font-size: 0.65rem;
     font-weight: 800;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35),
+        0 0 0 2px rgba(72, 213, 151, 0.15);
+    transition: transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.player-marker:hover {
+    transform: translate(-50%, -50%) scale(1.08);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4),
+        0 0 0 3px rgba(72, 213, 151, 0.2);
+}
+
+.player-marker.goalkeeper {
+    background-color: #9af2c5;
+}
+
+.player-marker.defender {
+    background-color: #63dda2;
+}
+
+.player-marker.midfielder {
+    background-color: var(--color-primary);
+}
+
+.player-marker.attacker {
+    background-color: #7ae8b4;
+}
+
+/* Player marker content */
+.player-label {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Player tooltips */
+.player-tooltip {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 10px);
+    transform: translateX(-50%) translateY(4px);
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: max-content;
+    padding: 0.5rem 0.7rem;
+    background-color: #07120e;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-small);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    font-size: 0.7rem;
+    line-height: 1.3;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.15s ease,
+        transform 0.15s ease;
+}
+
+.player-tooltip span:last-child {
+    color: var(--color-text-muted);
+}
+
+.player-marker.tooltip-below .player-tooltip {
+    top: calc(100% + 10px);
+    bottom: auto;
+}
+
+/* Show tooltip on hover */
+.player-marker:hover .player-tooltip,
+.player-marker:focus .player-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Keyboard focus */
+.player-marker:focus {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
 }
 
 /* Formation information */
@@ -720,5 +817,10 @@ img {
         width: 34px;
         height: 34px;
         font-size: 0.55rem;
+    }
+
+    .player-tooltip {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.55rem;
     }
 }
