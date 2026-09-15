@@ -549,3 +549,62 @@ function showFormation(formationId) {
         behavior: "smooth"
     });
 }
+
+function renderRatings(formation) {
+    renderRating(
+        attackingRating,
+        formation.attacking
+    );
+
+    renderRating(
+        defendingRating,
+        formation.defending
+    );
+
+    renderRating(
+        difficultyRating,
+        formation.difficulty
+    );
+}
+
+function renderRating(element, rating) {
+    element.innerHTML = "";
+    for (let i = 1; i <= 5; i++) {
+        const dot = document.createElement("span");
+        dot.classList.add("rating-dot");
+        if (i <= rating) {
+            dot.classList.add("active");
+        }
+
+        element.appendChild(dot);
+    }
+}
+
+function renderList(element, items) {
+    element.innerHTML = "";
+    items.forEach((item) => {
+        const listItem = document.createElement("li");
+        listItem.textContent = item;
+        element.appendChild(listItem);
+    });
+}
+
+function renderPitch(formation) {
+    const existingPlayers = footballPitch.querySelectorAll(".player-marker");
+    existingPlayers.forEach((player) => {
+        player.remove();
+    });
+
+    formation.positions.forEach((player) => {
+        const marker = document.createElement("div");
+        marker.classList.add("player-marker");
+        marker.textContent = player.position;
+        marker.style.left = `${player.x}%`;
+        marker.style.top = `${player.y}%`;
+        marker.setAttribute(
+            "aria-label",
+            player.position
+        );
+        footballPitch.appendChild(marker);
+    });
+}
