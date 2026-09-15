@@ -525,13 +525,33 @@ const tacticalConcepts = [
 
 ];
 
+function renderConcepts() {
+    const conceptGrid =
+        document.querySelector("#concept-grid");
+    conceptGrid.innerHTML = "";
+    tacticalConcepts.forEach((concept) => {
+        const card = document.createElement("article");
+        card.classList.add("concept-card");
+        card.innerHTML = `
+            <h3>${concept.name}</h3>
+
+            <p>
+                ${concept.description}
+            </p>
+        `;
+
+        conceptGrid.appendChild(card);
+    });
+}
+
 const formationGrid = document.querySelector("#formation-grid");
 const formationDetail = document.querySelector("#formation-detail");
-const randomButton = document.querySelector("#random-buttom");
+const randomButton = document.querySelector("#random-button");
 const typeFilter = document.querySelector("#type-filter");
 const styleFilter = document.querySelector("#style-filter");
 const sortSelect = document.querySelector("#sort-select");
-const detailTitle = document.querySelector("#detail-description");
+const detailTitle = document.querySelector("#detail-title");
+const detailDescription = document.querySelector("#detail-description");
 const attackingRating = document.querySelector("#attacking-rating");
 const defendingRating = document.querySelector("#defending-rating");
 const difficultyRating = document.querySelector("#difficulty-rating");
@@ -768,5 +788,5 @@ randomButton.addEventListener("click", () => {
 });
 
 updateFormationLibrary();
-showFormation(formatins[0].id);
+showFormation(formations[0].id);
 renderConcepts();

@@ -59,7 +59,7 @@ img {
 
 /* Reusable layout */
 .container {
-    width: min(100% -2rem, var(--max-width));
+    width: min(100% - 2rem, var(--max-width));
     margin-inline: auto;
 }
 
@@ -115,7 +115,7 @@ img {
             #0e1714 100%);
 }
 
-.header-content {
+.hero-content {
     max-width: 800px;
 }
 
@@ -245,7 +245,8 @@ img {
     background-color: var(--color-card);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-medium);
-    transition: 0.2s ease,
+    transition:
+        transform 0.2s ease,
         border-color 0.2s ease,
         background-color 0.2s ease;
 
@@ -313,7 +314,7 @@ img {
     background-color: #34443d;
 }
 
-.rating-list.active {
+.rating-dot.active {
     background-color: var(--color-primary);
 }
 
@@ -423,12 +424,12 @@ img {
     border-top: none;
 }
 
-.goal-area-bottom {
+.goal-area.bottom {
     bottom: 0;
     border-bottom: none;
 }
 
-/* Playes markers */
+/* Players markers */
 .player-marker {
     position: absolute;
     z-index: 5;
@@ -458,7 +459,7 @@ img {
 .strengths-weaknesses {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem
+    gap: 2rem;
 }
 
 .strengths-weaknesses h3 {
@@ -503,19 +504,19 @@ img {
 }
 
 /* Footer */
-.site.footer {
+.site-footer {
     padding: 3rem 0;
     background-color: #070c0a;
     border-top: 1px solid var(--color-border);
 }
 
-.site.footer p:first-child {
+.site-footer p:first-child {
     margin-bottom: 0.25rem;
     color: var(--color-primary);
     font-weight: 700;
 }
 
-.site.footer p:last-child {
+.site-footer p:last-child {
     color: var(--color-text-muted);
     font-size: 0.85rem;
 }
