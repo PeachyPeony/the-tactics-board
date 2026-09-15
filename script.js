@@ -559,6 +559,19 @@ const strengthsList = document.querySelector("#strengths-list");
 const weaknessesList = document.querySelector("#weaknesses-list");
 const footballPitch = document.querySelector("#football-pitch");
 
+function createRatingDots(rating) {
+    let dots = "";
+    for (let i = 1; i <= 5; i++) {
+        if (i <= rating) {
+            dots += `<span class="card-rating-dot active"></span>`;
+        } else {
+            dots += `<span class="card-rating-dot"></span>`;
+        }
+    }
+
+    return dots;
+}
+
 function renderFormations(formationsToRender) {
     formationGrid.innerHTML = "";
 
@@ -575,7 +588,30 @@ function renderFormations(formationsToRender) {
             <p>
                 ${formation.description}
             </p> 
-            `;
+
+            <div class="card-ratings">
+            <div class="card-rating">
+            <span>Attacking</span>
+            <div class="card-rating-dots">
+             ${createRatingDots(formation.attacking)}
+             </div>
+             </div>
+
+             <div class="card-rating">
+             <span>Defending</span>
+             <div class="card-rating-dots">
+              ${createRatingDots(formation.defending)}
+              </div>
+              </div>
+
+              <div class="card-rating">
+              <span>Difficulty</span>
+              <div class="card-rating-dots">
+               ${createRatingDots(formation.difficulty)}
+               </div>
+               </div>
+               </div>
+               `;
 
         card.addEventListener("click", () => {
             showFormation(formation.id);

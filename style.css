@@ -283,6 +283,52 @@ img {
     font-size: 0.9rem;
 }
 
+.card-ratings {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-border);
+}
+
+.card-rating {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.card-rating>span {
+    color: var(--color-text-muted);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.card-rating-dots {
+    display: flex;
+    gap: 0.35rem;
+}
+
+.card-rating-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: #34443d;
+    transition: background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.card-rating-dot.active {
+    background-color: var(--color-primary);
+}
+
+.formation-card:hover .card-rating-dot.active {
+    transform: scale(1.15);
+}
+
 .rating-list {
     display: flex;
     flex-direction: column;
