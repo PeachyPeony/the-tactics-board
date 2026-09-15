@@ -572,6 +572,35 @@ function createRatingDots(rating) {
     return dots;
 }
 
+function getPlayerRole(position) {
+    if (position === "GK") {
+        return "goalkeeper";
+    }
+
+    if (
+        position.includes("CB") ||
+        position === "LB" ||
+        position === "RB"
+    ) {
+        return "defender";
+    }
+
+    if (
+        position.includes("DM") ||
+        position.includes("CM") ||
+        position.includes("LM") ||
+        position.includes("RM") ||
+        position.includes("AM") ||
+        position === "CAM" ||
+        position === "LWB" ||
+        position === "RWB"
+    ) {
+        return "midfielders"
+    }
+
+    return "attacker"
+}
+
 function renderFormations(formationsToRender) {
     formationGrid.innerHTML = "";
 
@@ -585,6 +614,20 @@ function renderFormations(formationsToRender) {
         <p class="formation-style">
             ${formation.style}
             </p>
+
+            <div class="mini-pitch">
+            <div class="mini-pitch-centre-circle"></div>
+            <div class="mini-pitch-halfway"></div>
+            <div class="mini-pitch-penalty-top"></div>
+            <div class="mini-pitch-penalty-bottom"></div> 
+
+            ${formation.positions.map((player) => `
+            <span class= "mini-player ${getPlayerRole(player.position)}" 
+            style="left: ${player.x}%; top: ${player.y}%"
+            aria-hidden="true"></span>
+            `).join("")}
+            </div>
+            
             <p>
                 ${formation.description}
             </p> 
