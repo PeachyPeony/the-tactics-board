@@ -480,6 +480,10 @@ const formations = [
     }
 ];
 
+const tacticalConcepts = [
+
+]
+
 const formationGrid = document.querySelector("#formation-grid");
 const formationDetail = document.querySelector("#formation-detail");
 const randomButton = document.querySelector("#random-buttom");
@@ -608,3 +612,120 @@ function renderPitch(formation) {
         footballPitch.appendChild(marker);
     });
 }
+
+function highlightSelectedCard(formationId) {
+    const cards = document.querySelectorAll(".formation-card");
+    cards.forEach((card) => {
+        card.classList.toggle(
+            "selected",
+            card.dataset.id === formationId
+        );
+    });
+}
+
+function getFilteredFormations() {
+    let filteredFormations = [...formations];
+    const selectedType = typeFilter.value;
+    const selectedStyle = styleFilter.value;
+
+    if (selectedType !== "all") {
+        filteredFormations = filteredFormations.filter(
+            (formation) => formation.type === selectedType
+        );
+    }
+
+    if (selectedStyle !== "all") {
+        filteredFormations = filteredFormations.filter(
+            (formation) => formation.style === selectedStyle
+        );
+    }
+
+    return filteredFormations;
+}
+
+function sortFormations(formationsToSort) {
+    const sortedFormations = [
+        ...formationsToSort
+    ];
+
+    switch (sortSelect.value) {
+        case "name-asc":
+            sortedFormations.sort(
+                (a, b) => a.name.localeCompare(b.name)
+            );
+            break;
+
+        case "name-desc":
+            sortedFormations.sort(
+                (a, b) => b.name.localeCompare(a.name)
+            );
+            break;
+
+        case "attacking-desc":
+            sortedFormations.sort(
+                (a, b) => b.attacking - a.attacking
+            );
+            break;
+
+        case "defending-desc":
+            sortedFormations.sort(
+                (a, b) => b.defending - a.defending
+            );
+            break;
+
+        case "difficulty-asc":
+            sortedFormations.sort(
+                (a, b) => a.difficulty - b.difficulty
+            );
+            break;
+
+        case "difficulty-desc":
+            sortedFormations.sort(
+                (a, b) => b.difficulty - a.difficulty
+            );
+            break;
+    }
+
+    return sortedFormations;
+}
+
+function updateFormationLibrary() {
+    const filteredFormations =
+        getFilteredFormations();
+
+    const sortedFormations =
+        sortFormations(filteredFormations);
+
+    renderFormations(sortedFormations);
+}
+
+typeFilter.addEventListener(
+    "change",
+    updateFormationLibrary
+);
+
+styleFilter.addEventListener(
+    "change",
+    updateFormationLibrary
+);
+
+sortSelect.addEventListener(
+    "change",
+    updateFormationLibrary
+);
+
+randomButton.addEventListener("click", () => {
+    const availableFormations = getFilteredFormations();
+
+    if (availableFormations.length === 0) {
+        return;
+    }
+
+    const randomIndex = Math.floor(Math.random() * availableFormations.length);
+    const randomFormation = availableFormations[randomIndex];
+    showFormation(randomFormation.id);
+});
+
+updateFormationLibrary();
+showFormation(formatins[0].id);
+renderConcepts();
