@@ -481,8 +481,49 @@ const formations = [
 ];
 
 const tacticalConcepts = [
+    {
+        id: "pressing",
+        name: "Pressing",
+        description:
+            "A team attempts to win the ball back quickly after losing possession by putting pressure on the opponent."
+    },
 
-]
+    {
+        id: "low-block",
+        name: "Low Block",
+        description:
+            "A defensive approach where the team retreats into a compact shape close to its own goal, limiting space for the opposition to attack."
+    },
+
+    {
+        id: "counter-attacking",
+        name: "Counter-Attacking",
+        description:
+            "A strategy based on quickly attacking the space left behind when the opposition loses possession."
+    },
+
+    {
+        id: "possession",
+        name: "Possession",
+        description:
+            "A style focused on keeping the ball, creating passing options and controlling the tempo of the match."
+    },
+
+    {
+        id: "overlapping",
+        name: "Overlapping",
+        description:
+            "When a player, often a full-back, runs beyond a teammate who has the ball to provide an additional attacking option."
+    },
+
+    {
+        id: "width-overloads",
+        name: "Width & Overloads",
+        description:
+            "Using the full width of the pitch and creating numerical advantages in particular areas to make it difficult for the opposition to defend."
+    }
+
+];
 
 const formationGrid = document.querySelector("#formation-grid");
 const formationDetail = document.querySelector("#formation-detail");
