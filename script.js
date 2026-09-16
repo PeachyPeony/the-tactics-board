@@ -595,10 +595,10 @@ function getPlayerRole(position) {
         position === "LWB" ||
         position === "RWB"
     ) {
-        return "midfielder"
+        return "midfielder";
     }
 
-    return "attacker"
+    return "attacker";
 }
 
 function getPlayerRoleName(position) {
@@ -626,7 +626,7 @@ function getPlayerRoleName(position) {
 
         CAM: "Attacking Midfielder",
         LAM: "Left Attacking Midfielder",
-        RAM: "Right Attacking Midfieler",
+        RAM: "Right Attacking Midfielder",
 
         LW: "Left Winger",
         RW: "Right Winger",
@@ -647,12 +647,16 @@ function renderFormations(formationsToRender) {
         card.classList.add("formation-card");
         card.dataset.id = formation.id;
         card.setAttribute("tabindex", "0");
+        card.setAttribute("role", "button");
         card.setAttribute("aria-label",
             `View ${formation.name} formation`);
         card.addEventListener("keydown", (event) => {
             if (event.key === "Enter" || event.key === " ") {
                 event.preventDefault();
                 showFormation(formation.id);
+                formationDetail.scrollIntoView({
+                    behavior: "smooth"
+                });
             }
         });
         card.innerHTML = `
@@ -660,13 +664,16 @@ function renderFormations(formationsToRender) {
         
         <p class="formation-style">
             ${formation.style}
-            </p>
+            </p> 
 
             <div class="mini-pitch">
             <div class="mini-pitch-centre-circle"></div>
             <div class="mini-pitch-halfway"></div>
-            <div class="mini-pitch-penalty-top"></div>
-            <div class="mini-pitch-penalty-bottom"></div> 
+            <div class="mini-pitch-penalty top"></div>
+            <div class="mini-pitch-penalty bottom"></div> 
+            <div class="mini-pitch-goal top"></div>
+            <div class="mini-pitch-goal bottom"></div>
+
 
             ${formation.positions.map((player) => `
             <span class= "mini-player ${getPlayerRole(player.position)}" 
@@ -705,6 +712,10 @@ function renderFormations(formationsToRender) {
 
         card.addEventListener("click", () => {
             showFormation(formation.id);
+
+            formationDetail.scrollIntoView({
+                behavior: "smooth"
+            });
         });
         formationGrid.appendChild(card);
 
@@ -736,9 +747,6 @@ function showFormation(formationId) {
 
     renderPitch(formation);
     highlightSelectedCard(formation.id);
-    formationDetail.scrollIntoView({
-        behavior: "smooth"
-    });
 }
 
 function renderRatings(formation) {
@@ -796,6 +804,13 @@ function renderPitch(formation) {
         if (player.y < 30) {
             marker.classList.add("tooltip-below");
         }
+        if (player.x < 25) {
+            marker.classList.add("tooltip-right");
+        }
+
+        if (player.x > 75) {
+            marker.classList.add("tooltip-left");
+        }
         marker.textContent = player.position;
         marker.style.left = `${player.x}%`;
         marker.style.top = `${player.y}%`;
@@ -805,9 +820,13 @@ function renderPitch(formation) {
         );
 
         marker.setAttribute("tabindex", "0");
-        marker.innerHTML = `<span class="player-label">${player.position}</span>
-        <span class="player-tooltip"> <strong>${player.position}</strong> 
-        <span>${roleName}</span>`;
+        marker.innerHTML = `
+        <span class="player-label">${player.position}</span>
+        <span class="player-tooltip"> 
+          <strong>${player.position}</strong> 
+          <span>${roleName}</span>
+        </span> 
+        `;
 
         footballPitch.appendChild(marker);
     });
@@ -924,6 +943,9 @@ randomButton.addEventListener("click", () => {
     const randomIndex = Math.floor(Math.random() * availableFormations.length);
     const randomFormation = availableFormations[randomIndex];
     showFormation(randomFormation.id);
+    formationDetail.scrollIntoView({
+        behavior: "smooth"
+    });
 });
 
 updateFormationLibrary();

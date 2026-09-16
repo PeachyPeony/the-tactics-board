@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
 /* Reset & Global styles */
 * {
     margin: 0;
@@ -32,10 +34,16 @@ html {
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Inter', sans-serif;
     background-color: var(--color-background);
     color: var(--color-text);
     line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Space Grotesk', sans-serif;
 }
 
 button,
@@ -106,7 +114,7 @@ img {
 
 /* Hero */
 .hero {
-    padding: 7rem 0 6rem;
+    padding: 8rem 0 7rem;
     background: radial-gradient(circle at 80% 30%,
             rgba(72, 213, 151, 0.12),
             transparent 35%),
@@ -131,23 +139,25 @@ img {
 .hero h1 {
     max-width: 750px;
     font-size: clamp(2.8rem, 7vw, 5.5rem);
-    line-height: 0.95;
-    letter-spacing: -0.05em;
+    line-height: 0.98;
+    letter-spacing: -0.045em;
 }
 
 .hero-description {
     max-width: 600px;
-    margin: 1.5rem 0 2rem;
+    margin: 1.75rem 0 2.25rem;
     color: var(--color-text-muted);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
 }
 
 /* Buttons */
 .button {
     border: none;
     border-radius: 999px;
-    padding: 0.8rem 1.4rem;
+    padding: 0.85rem 1.5rem;
     font-weight: 700;
+    letter-spacing: 0.01em;
     transition: background-color 0.2s ease,
         transform 0.2s ease;
 }
@@ -203,7 +213,7 @@ img {
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     margin-bottom: 2.5rem;
-    padding: 1.25rem;
+    padding: 1.4rem;
     background-color: var(--color-card);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-medium);
@@ -220,17 +230,23 @@ img {
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
 }
 
 .filter-group select {
     width: 100%;
-    padding: 0.75rem 0.9rem;
+    padding: 0.8rem 0.9rem;
     background-color: var(--color-background-light);
     color: var(--color-text);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-small);
     cursor: pointer;
+    transition: border-color 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.filter-group select:hover {
+    border-color: rgba(72, 213, 151, 0.35);
 }
 
 .filter-group select:focus-visible {
@@ -246,7 +262,7 @@ img {
 }
 
 .formation-card {
-    padding: 1.5rem;
+    padding: 1.6rem;
     background-color: var(--color-card);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-medium);
@@ -259,7 +275,7 @@ img {
 }
 
 .formation-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
     background-color: var(--color-card-hover);
     border-color: rgba(72, 213, 151, 0.4);
 }
@@ -272,12 +288,14 @@ img {
 .formation-card.selected {
     border-color: var(--color-primary);
     background-color: #1a2b24;
-    box-shadow: 0 0 0 1px var(--color-primary);
+    box-shadow: 0 0 0 1px var(--color-primary),
+        0 8px 25px rgba(0, 0, 0, 0.18);
 }
 
 .formation-card h3 {
-    margin-bottom: 0.25rem;
-    font-size: 1.6rem;
+    margin-bottom: 0.3rem;
+    font-size: 1.65rem;
+    letter-spacing: -0.02em;
 }
 
 .formation-card .formation-style {
@@ -292,6 +310,7 @@ img {
 .formation-card p {
     color: var(--color-text-muted);
     font-size: 0.9rem;
+    line-height: 1.65;
 }
 
 .card-ratings {
@@ -344,7 +363,7 @@ img {
 .mini-pitch {
     position: relative;
     width: 100%;
-    max-width: 180px;
+    max-width: 190px;
     aspect-ratio: 68 / 105;
     margin: 1.5rem auto;
     overflow: hidden;
@@ -359,8 +378,8 @@ img {
     content: "";
     position: absolute;
     inset: 0;
-    background: repeating-linear-gradient(to right, rgba(255, 255, 0.02) 0,
-            rgba(255, 255, 0.02) 10%,
+    background: repeating-linear-gradient(to right, rgba(255, 255, 255, 0.02) 0,
+            rgba(255, 255, 255, 0.02) 10%,
             transparent 10%,
             transparent 20%);
 }
@@ -398,12 +417,26 @@ img {
 
 .mini-pitch-penalty.top {
     top: 0;
-    border-top: none;
 }
 
 .mini-pitch-penalty.bottom {
     bottom: 0;
-    border-bottom: none;
+}
+
+.mini-pitch-goal {
+    position: absolute;
+    left: 36%;
+    width: 28%;
+    height: 6%;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.mini-pitch-goal.top {
+    top: 0;
+}
+
+.mini-pitch-goal.bottom {
+    bottom: 0;
 }
 
 /* Players */
@@ -446,6 +479,8 @@ img {
     flex-direction: column;
     gap: 1rem;
     margin-bottom: 2rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid var(--color-border);
 }
 
 .rating {
@@ -457,7 +492,10 @@ img {
 
 .rating>span {
     color: var(--color-text-muted);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
 }
 
 .rating-value {
@@ -466,14 +504,15 @@ img {
 }
 
 .rating-dot {
-    width: 10px;
-    height: 10px;
+    width: 11px;
+    height: 11px;
     border-radius: 50%;
     background-color: #34443d;
 }
 
 .rating-dot.active {
     background-color: var(--color-primary);
+    box-shadow: 0 0 0 1px rgba(72, 213, 151, 0.08);
 }
 
 /* Formation detail */
@@ -500,7 +539,7 @@ img {
     background-color: var(--color-pitch);
     border: 4px solid rgba(255, 255, 255, 0.85);
     border-radius: 6px;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45),
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.38),
         0 0 0 1px rgba(72, 213, 151, 0.08);
 }
 
@@ -510,8 +549,8 @@ img {
     position: absolute;
     inset: 0;
     background: repeating-linear-gradient(to right,
-            rgba(255, 255, 255, 0.025) 0,
-            rgba(255, 255, 0.025) 10%,
+            rgba(255, 255, 255, 0.02) 0,
+            rgba(255, 255, 255, 0.02) 10%,
             transparent 10%,
             transparent 20%);
 }
@@ -535,7 +574,7 @@ img {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    border: 2px solid var(--color-pitch-line);
+    border: 1.5px solid var(--color-pitch-line);
     border-radius: 50%;
 }
 
@@ -593,20 +632,20 @@ img {
 .player-marker {
     position: absolute;
     z-index: 5;
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: var(--color-primary);
     color: #07120e;
-    border: 3px solid #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.9);
     border-radius: 50%;
     font-size: 0.65rem;
     font-weight: 800;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35),
-        0 0 0 2px rgba(72, 213, 151, 0.15);
+        0 0 0 2px rgba(255, 255, 255, 0.12);
     transition: transform 0.2s ease,
         box-shadow 0.2s ease;
 }
@@ -615,6 +654,11 @@ img {
     transform: translate(-50%, -50%) scale(1.08);
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4),
         0 0 0 3px rgba(72, 213, 151, 0.2);
+}
+
+.player-marker:hover,
+.player-marker:focus {
+    z-index: 20;
 }
 
 .player-marker.goalkeeper {
@@ -676,12 +720,30 @@ img {
     bottom: auto;
 }
 
+.player-marker.tooltip-right .player-tooltip {
+    left: 0;
+    transform: translateY(4px);
+}
+
+.player-marker.tooltip-left .player-tooltip {
+    left: auto;
+    right: 0;
+    transform: translateY(4px);
+}
+
 /* Show tooltip on hover */
 .player-marker:hover .player-tooltip,
 .player-marker:focus .player-tooltip {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
+}
+
+.player-marker.tooltip-right:hover .player-tooltip,
+.player-marker.tooltip-right:focus .player-tooltip,
+.player-marker.tooltip-left:hover .player-tooltip,
+.player-marker.tooltip-left:focus .player-tooltip {
+    transform: translateY(0);
 }
 
 /* Keyboard focus */
@@ -693,19 +755,27 @@ img {
 /* Formation information */
 .formation-information {
     padding: 2rem;
-    background-color: var(--color-card);
+    background-color: #141e1a;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-medium);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.16);
 }
 
 .strengths-weaknesses {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+
 }
 
 .strengths-weaknesses h3 {
     margin-bottom: 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
 }
 
 .strengths-weaknesses ul {
@@ -734,10 +804,22 @@ img {
     background: var(--color-card);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-medium);
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.concept-card:hover {
+    transform: tranlateY(-3px);
+    background-color: var(--color-card-hover);
+    border-color: rgba(72, 213, 151, 0.3);
 }
 
 .concept-card h3 {
     margin-bottom: 0.5rem;
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
 }
 
 .concept-card p {
@@ -747,20 +829,24 @@ img {
 
 /* Footer */
 .site-footer {
-    padding: 3rem 0;
+    padding: 3.5rem 0;
     background-color: #070c0a;
     border-top: 1px solid var(--color-border);
 }
 
 .site-footer p:first-child {
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.35rem;
     color: var(--color-primary);
-    font-weight: 700;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
 }
 
 .site-footer p:last-child {
     color: var(--color-text-muted);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
 }
 
 /* Responsive design */
@@ -795,8 +881,16 @@ img {
         padding: 5rem 0 4rem;
     }
 
+    .hero h1 {
+        font-size: clamp(2.4rem, 12vw, 3.8rem);
+    }
+
     .controls {
         grid-template-columns: 1fr;
+    }
+
+    .pitch-container {
+        max-width: 420px;
     }
 
     .formation-grid,
@@ -810,7 +904,7 @@ img {
     }
 
     .formation-information {
-        padding: 1.25rem
+        padding: 1.25rem;
     }
 
     .player-marker {
