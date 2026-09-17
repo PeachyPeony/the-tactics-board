@@ -1,12 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 
-/* Reset & Global styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Global design variables */
 :root {
     --color-background: #0b1110;
     --color-background-light: #111a17;
@@ -28,6 +22,15 @@
     --radius-medium: 14px;
     --radius-large: 20px;
 }
+
+/* Reset & Global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
 
 html {
     scroll-behavior: smooth;
@@ -373,7 +376,7 @@ img {
     opacity: 0.9;
 }
 
-/* Pitch stripes */
+/* Creates the alternating grass stripes */
 .mini-pitch::before {
     content: "";
     position: absolute;
@@ -543,7 +546,7 @@ img {
         0 0 0 1px rgba(72, 213, 151, 0.08);
 }
 
-/* Pitch stripes */
+/* Creates the alternating grass stripes using a pseudo-element */
 .football-pitch::before {
     content: "";
     position: absolute;
@@ -555,7 +558,7 @@ img {
             transparent 20%);
 }
 
-/* Halfway line */
+/* Creates the halfway line using a psuedo-element */
 .football-pitch::after {
     content: "";
     position: absolute;
@@ -628,7 +631,7 @@ img {
     border-bottom: none;
 }
 
-/* Players markers */
+/* Player markers are positioned on the pitch using top/left coordinates */
 .player-marker {
     position: absolute;
     z-index: 5;
@@ -811,7 +814,7 @@ img {
 }
 
 .concept-card:hover {
-    transform: tranlateY(-3px);
+    transform: translateY(-3px);
     background-color: var(--color-card-hover);
     border-color: rgba(72, 213, 151, 0.3);
 }
@@ -850,6 +853,8 @@ img {
 }
 
 /* Responsive design */
+
+/* Tablet and smaller screens */
 @media (max-width: 900px) {
 
     .formation-grid,
@@ -866,6 +871,7 @@ img {
     }
 }
 
+/* Mobile screens */
 @media (max-width: 650px) {
     .header-content {
         flex-direction: column;
