@@ -1,3 +1,4 @@
+// Formation data used to build the formation library and tactical breakdowns
 const formations = [
     {
         id: "4-4-2",
@@ -480,6 +481,7 @@ const formations = [
     }
 ];
 
+// Tactical concepts displayed in the learning section
 const tacticalConcepts = [
     {
         id: "pressing",
@@ -525,6 +527,7 @@ const tacticalConcepts = [
 
 ];
 
+// Render tactical concept cards
 function renderConcepts() {
     const conceptGrid =
         document.querySelector("#concept-grid");
@@ -544,6 +547,7 @@ function renderConcepts() {
     });
 }
 
+// References to HTML elements used by the JavaScript
 const formationGrid = document.querySelector("#formation-grid");
 const formationDetail = document.querySelector("#formation-detail");
 const randomButton = document.querySelector("#random-button");
@@ -559,6 +563,7 @@ const strengthsList = document.querySelector("#strengths-list");
 const weaknessesList = document.querySelector("#weaknesses-list");
 const footballPitch = document.querySelector("#football-pitch");
 
+// Create the rating dots displayed on formation cards
 function createRatingDots(rating) {
     let dots = "";
     for (let i = 1; i <= 5; i++) {
@@ -572,6 +577,7 @@ function createRatingDots(rating) {
     return dots;
 }
 
+// Convert position codes into CSS role classes
 function getPlayerRole(position) {
     if (position === "GK") {
         return "goalkeeper";
@@ -601,6 +607,7 @@ function getPlayerRole(position) {
     return "attacker";
 }
 
+// Convert position codes into readable player role names
 function getPlayerRoleName(position) {
     const roleNames = {
         GK: "Goalkeeper",
@@ -639,6 +646,7 @@ function getPlayerRoleName(position) {
     return roleNames[position] || position;
 }
 
+// Build and display formation cards from the formation data
 function renderFormations(formationsToRender) {
     formationGrid.innerHTML = "";
 
@@ -722,6 +730,7 @@ function renderFormations(formationsToRender) {
     });
 }
 
+// Display the selected formation and update all related details
 function showFormation(formationId) {
     const formation = formations.find(
         (item) => item.id === formationId
@@ -749,6 +758,7 @@ function showFormation(formationId) {
     highlightSelectedCard(formation.id);
 }
 
+// Render rating dots for the selected formation
 function renderRatings(formation) {
     renderRating(
         attackingRating,
@@ -788,6 +798,7 @@ function renderList(element, items) {
     });
 }
 
+// Build the player markers for the selected formation
 function renderPitch(formation) {
     const existingPlayers = footballPitch.querySelectorAll(".player-marker");
     existingPlayers.forEach((player) => {
@@ -801,6 +812,7 @@ function renderPitch(formation) {
         marker.classList.add(
             "player-marker", roleClass
         );
+        // Adjust tooltip position for players near the edges of the pitch
         if (player.y < 30) {
             marker.classList.add("tooltip-below");
         }
@@ -832,6 +844,7 @@ function renderPitch(formation) {
     });
 }
 
+// Highlight the card matching the currently selected formation
 function highlightSelectedCard(formationId) {
     const cards = document.querySelectorAll(".formation-card");
     cards.forEach((card) => {
@@ -842,6 +855,7 @@ function highlightSelectedCard(formationId) {
     });
 }
 
+// Return formations matching the selected filters
 function getFilteredFormations() {
     let filteredFormations = [...formations];
     const selectedType = typeFilter.value;
@@ -862,6 +876,7 @@ function getFilteredFormations() {
     return filteredFormations;
 }
 
+// Sort formations according to the selected sorting option
 function sortFormations(formationsToSort) {
     const sortedFormations = [
         ...formationsToSort
@@ -908,6 +923,7 @@ function sortFormations(formationsToSort) {
     return sortedFormations;
 }
 
+// Apply the selected filters and sorting, then re-render the library
 function updateFormationLibrary() {
     const filteredFormations =
         getFilteredFormations();
@@ -918,6 +934,7 @@ function updateFormationLibrary() {
     renderFormations(sortedFormations);
 }
 
+// Update the formation library when filters or sorting change
 typeFilter.addEventListener(
     "change",
     updateFormationLibrary
@@ -933,6 +950,7 @@ sortSelect.addEventListener(
     updateFormationLibrary
 );
 
+// Select a random formation form the currently filtered results
 randomButton.addEventListener("click", () => {
     const availableFormations = getFilteredFormations();
 
@@ -948,6 +966,7 @@ randomButton.addEventListener("click", () => {
     });
 });
 
+// Initialise the page with the default content
 updateFormationLibrary();
 showFormation(formations[0].id);
 renderConcepts();
