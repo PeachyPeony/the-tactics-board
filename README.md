@@ -99,6 +99,6 @@ Possible improvments for a future version could include:
   - Improving the filtering system with multiple simultaneous filters 
 
   ## About This Project
-  This project was created as part of a self-paced web development bootcamp i am currently taking, as a practical exercice in HTML, CSS and JavaScript.
+  This project was created as part of a self-paced web development bootcamp i am currently taking, as a practical exercise in HTML, CSS and JavaScript.
 
 
